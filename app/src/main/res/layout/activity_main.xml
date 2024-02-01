@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000080"
+    android:background="@color/material_dynamic_neutral90"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -81,15 +81,16 @@
     </LinearLayout>
 
     <ScrollView
-        android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/navbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -99,25 +100,202 @@
                 android:id="@+id/textContact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:text="Contact:"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editName"
+                android:id="@+id/editContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:ems="14"
+                android:inputType="text"
+                android:text="Enter Name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_tobottomOf="@+id/textContact"
+                tools:layout_editor_absoluteY="32dp" />
+
+            <TextView
+                android:id="@+id/textAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Address:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editContact"
+                app:layout_goneMarginLeft="16dp" />
+
+            <EditText
+                android:id="@+id/editAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Name"
+                android:ems="16"
+                android:inputType="text"
+                android:text="Enter Street Address"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/textAddress"
+                app:layout_goneMarginLeft="16dp" />
 
-            <requestFocus />
+            <EditText
+                android:id="@+id/editCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="9"
+                android:inputType="text"
+                android:text="City"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editAddress"
+                app:layout_goneMarginLeft="16dp"
+                android:nextFocusDown="@id/editState"/>
+
+            <EditText
+                android:id="@+id/editState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:ems="2"
+                android:inputType="text"
+                android:text="State"
+                app:layout_constraintStart_toEndOf="@id/editCity"
+                app:layout_constraintTop_toBottomOf="@id/editAddress"
+                app:layout_goneMarginLeft="120dp"
+                android:maxLength="2"
+                android:nextFocusDown="@id/editZipcode"/>
+
+            <EditText
+                android:id="@+id/editZipcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="8dp"
+                android:ems="5"
+                android:inputType="text"
+                android:maxLength="7"
+                android:text="Zipcode"
+                app:layout_constraintStart_toEndOf="@id/editState"
+                app:layout_constraintTop_toBottomOf="@id/editAddress"
+                app:layout_goneMarginLeft="120dp"
+                android:nextFocusDown="@id/editHome"/>
+
+            <TextView
+                android:id="@+id/textHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Home Phone:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editCity"
+                app:layout_goneMarginLeft="16dp" />
+
+            <EditText
+                android:id="@+id/editHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="8"
+                android:inputType="text"
+                android:maxLength="14"
+                android:nextFocusDown="@id/editCell"
+                android:text=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textHome"
+                app:layout_goneMarginLeft="120dp" />
+
+            <TextView
+                android:id="@+id/textCell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:text="Cell Phone:"
+                app:layout_constraintStart_toEndOf="@id/editHome"
+                app:layout_constraintTop_toBottomOf="@id/editCity"
+                app:layout_goneMarginLeft="16dp" />
+
+            <EditText
+                android:id="@+id/editCell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:ems="8"
+                android:inputType="text"
+                android:maxLength="14"
+                android:nextFocusDown="@id/editEmail"
+                android:text=""
+                app:layout_constraintStart_toEndOf="@id/editHome"
+                app:layout_constraintTop_toBottomOf="@id/textCell"
+                app:layout_goneMarginLeft="120dp" />
+
+            <TextView
+                android:id="@+id/textEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Email:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editHome"
+                app:layout_goneMarginLeft="16dp" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:ems="16"
+                android:inputType="text"
+                android:maxLength="14"
+                android:nextFocusDown="@id/editEmail"
+                android:text=""
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textEmail"
+                app:layout_goneMarginLeft="120dp" />
+
+            <TextView
+                android:id="@+id/textBday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Birthday:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/editEmail"
+                app:layout_goneMarginLeft="16dp" />
+
+            <TextView
+                android:id="@+id/textBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:text="01/01/1970"
+                app:layout_constraintStart_toEndOf="@id/textBday"
+                app:layout_constraintTop_toBottomOf="@id/editEmail"
+                app:layout_goneMarginLeft="16dp" />
+
+            <Button
+                android:id="@+id/btnBirthday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:text="Change"
+                app:layout_constraintBaseline_toBaselineOf="@id/textBirthday"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
