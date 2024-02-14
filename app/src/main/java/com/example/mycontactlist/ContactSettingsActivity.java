@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 public class ContactSettingsActivity extends AppCompatActivity {
 
@@ -18,6 +19,9 @@ public class ContactSettingsActivity extends AppCompatActivity {
         initListButton();
         initMapButton();
         initSettingsButton();
+        initSettings();
+        initSortByClick();
+        initSortOrderClick();
     }
 
     private void initListButton() {
@@ -50,16 +54,16 @@ public class ContactSettingsActivity extends AppCompatActivity {
 
 
     private void initSettings() {
-        String sortBy = getSharedPreferences("MyContactList Preferences",
-                Context.MODE_PRIVATE) .getString("sortfield", "contactname");
+        String sortBy = getSharedPreferences("MyContactListPreferences",
+                Context.MODE_PRIVATE).getString("sortField", "contactName");
         String sortOrder = getSharedPreferences("MyContactListPreferences",
-                Context.MODE_PRIVATE) .getString("sortorder", "ASC");
+                Context.MODE_PRIVATE).getString("sortOrder", "ASC");
 
         RadioButton rbName = findViewById(R.id.radioName);
         RadioButton rbCity = findViewById(R.id.radioCity);
         RadioButton rbBirthDay = findViewById(R.id.radioBirthday);
 
-        if (sortBy.equalsIgnoreCase("contactname")) {
+        if (sortBy.equalsIgnoreCase("contactName")) {
             rbName.setChecked(true);
         }
         else if (sortBy.equalsIgnoreCase("city")) {
@@ -78,6 +82,57 @@ public class ContactSettingsActivity extends AppCompatActivity {
         else {
             rbDescending.setChecked(true);
         }
+    }
+
+    private void initSortByClick() {
+        RadioGroup rgSortBy = findViewById(R.id.radioGroupSortBy);
+        rgSortBy.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                RadioButton rbName = findViewById(R.id.radioName);
+                RadioButton rbCity = findViewById(R.id.radioCity);
+                System.out.println(radioGroup + "Break" + i);
+                if (rbName.isChecked()) {
+                    getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                            .edit()
+                            .putString("sortField", "contactName")
+                            .apply();
+                } else if (rbCity.isChecked()) {
+                    getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                            .edit()
+                            .putString("sortField", "city")
+                            .apply();
+                } else {
+                    getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                            .edit()
+                            .putString("sortField", "birthday")
+                            .apply();
+                }
+            }
+        });
+    }
+
+    private void initSortOrderClick() {
+        RadioGroup rgSortOrder = findViewById(R.id.radioGroupSortOrder);
+        rgSortOrder.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                // Handle sort order change here
+                RadioButton ascButton = findViewById(R.id.radioAscending);
+
+                if(ascButton.isChecked()){
+                    getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                            .edit()
+                            .putString("sortOrder", "ASC")
+                            .apply();
+                } else{
+                   getSharedPreferences("MyContactListPreferences", Context.MODE_PRIVATE)
+                           .edit()
+                           .putString("sortOrder", "DEC")
+                           .apply();
+                }
+            }
+        });
     }
 
 }

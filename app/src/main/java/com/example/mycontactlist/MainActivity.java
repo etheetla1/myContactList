@@ -17,6 +17,8 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.SaveDateListener {
 
+    private Contact currentContact;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         initToggleButton(); // Added initialization for toggle button
         initChangeDateButton(); //Added initialization for the change
         setForEditing(false);
+        currentContact = new Contact();
     }
 
     private void initListButton() {
@@ -105,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     public void didFinishDatePickerDialog(Calendar selectedTime) {
         TextView birthDay = findViewById(R.id.textBirthday);
         birthDay.setText(DateFormat.format("MM/dd/yyyy", selectedTime));
+        currentContact.setBirthday(selectedTime);
     }
 
     private void initChangeDateButton(){
