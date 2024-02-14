@@ -107,7 +107,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editContact"
+                android:id="@+id/editName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
@@ -126,7 +126,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Address:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editContact"
+                app:layout_constraintTop_toBottomOf="@id/editName"
                 app:layout_goneMarginLeft="16dp" />
 
             <EditText
@@ -232,7 +232,7 @@
                 android:ems="8"
                 android:inputType="text"
                 android:maxLength="14"
-                android:nextFocusDown="@id/editEmail"
+                android:nextFocusDown="@id/editEMail"
                 android:text=""
                 app:layout_constraintStart_toEndOf="@id/editHome"
                 app:layout_constraintTop_toBottomOf="@id/textCell"
@@ -250,7 +250,7 @@
                 app:layout_goneMarginLeft="16dp" />
 
             <EditText
-                android:id="@+id/editEmail"
+                android:id="@+id/editEMail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -258,7 +258,7 @@
                 android:ems="16"
                 android:inputType="text"
                 android:maxLength="14"
-                android:nextFocusDown="@id/editEmail"
+                android:nextFocusDown="@id/editEMail"
                 android:text=""
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textEmail"
@@ -272,7 +272,7 @@
                 android:layout_marginTop="24dp"
                 android:text="Birthday:"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editEmail"
+                app:layout_constraintTop_toBottomOf="@id/editEMail"
                 app:layout_goneMarginLeft="16dp" />
 
             <TextView
@@ -283,11 +283,11 @@
                 android:layout_marginTop="24dp"
                 android:text="01/01/1970"
                 app:layout_constraintStart_toEndOf="@id/textBday"
-                app:layout_constraintTop_toBottomOf="@id/editEmail"
+                app:layout_constraintTop_toBottomOf="@id/editEMail"
                 app:layout_goneMarginLeft="16dp" />
 
             <Button
-                android:id="@+id/btnBirthday"
+                android:id="@+id/buttonBirthday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="60dp"

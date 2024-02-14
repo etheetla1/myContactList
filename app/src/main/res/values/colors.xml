@@ -10,6 +10,7 @@
 
     <color name="navbar_background">#1A1A48</color>
     <color name="toolbar_background">#BEBEBE</color>
+    <color name="dialog_button_color">#26C6DA</color>
 
     <color name="colorPrimary">#222938</color>
     <color name="colorSecondary">#F2d352</color>
