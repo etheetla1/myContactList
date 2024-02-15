@@ -16,8 +16,6 @@ public class Contact {
     private String cellNumber;
     private String eMail;
     private Calendar birthday;
-    private SQLiteDatabase database;
-
     public Contact(){
         contactID = -1;
         birthday = Calendar.getInstance();

@@ -9,8 +9,7 @@ public class ContactDBHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "mycontact.db";
     private static final int DATABASE_VERSION = 1;
 
-    private static final String CREATE_TABLE_CONTACT = "" +
-            "create table contact (_id integer primary key autoincrement," +
+    private static final String CREATE_TABLE_CONTACT = "create table contact (_id integer primary key autoincrement," +
             "city text, state text, zipcode text," +
             "phonenumber text, cellnumber text," +
             "email text, birthday text);";
@@ -21,7 +20,12 @@ public class ContactDBHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_CONTACT);
+        try{
+            db.execSQL(CREATE_TABLE_CONTACT);
+        }catch (Exception e){
+        }
+
+        System.out.println("Code ran");
     }
 
     @Override

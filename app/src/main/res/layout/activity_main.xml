@@ -77,7 +77,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
-            android:text="@string/button" />
+            android:text="Save" />
     </LinearLayout>
 
     <ScrollView
