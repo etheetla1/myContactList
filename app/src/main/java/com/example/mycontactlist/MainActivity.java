@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         etStreetAddress.addTextChangedListener(new TextWatcher() {
 
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 public class ContactDataSource {
     private SQLiteDatabase database;
     private ContactDBHelper dbHelper;
@@ -28,7 +30,7 @@ public class ContactDataSource {
         try{
             ContentValues initialValues = new ContentValues();
 
-            initialValues.put("contactName", c.getContactName());
+            initialValues.put("contactname", c.getContactName());
             initialValues.put("streetaddress", c.getStreetAddress());
             initialValues.put("city", c.getCity());
             initialValues.put("state", c.getState());
@@ -37,11 +39,10 @@ public class ContactDataSource {
             initialValues.put("cellnumber", c.getCellNumber());
             initialValues.put("email", c.getEMail());
             initialValues.put("birthday", String.valueOf(c.getBirthday().getTimeInMillis()));
-
-            didSucceed = database.insert("contact", null, initialValues) > 0;
-            System.out.println("Success: "+ didSucceed);
+            long rowChanged = database.insert("contact", null, initialValues);
+            didSucceed =  rowChanged > 0;
+            System.out.println("Success: "+ rowChanged);
         }catch(Exception e){
-
         }
 
         return didSucceed;
@@ -54,7 +55,7 @@ public class ContactDataSource {
             long rowId = (long) c.getContactID();
             ContentValues updateValues = new ContentValues();
 
-            updateValues.put("contactName", c.getContactName());
+            updateValues.put("contactname", c.getContactName());
             updateValues.put("streetaddress", c.getStreetAddress());
             updateValues.put("city", c.getCity());
             updateValues.put("state", c.getState());
@@ -86,6 +87,27 @@ public class ContactDataSource {
         }
 
         return lastId;
+    }
+
+    public ArrayList<String> getContactName(){
+        ArrayList<String> contactName = new ArrayList<>();
+        try{
+            String query = "Select contactname from contact";
+            Cursor cursor = database.rawQuery(query, null);
+            cursor.moveToFirst();
+            cursor.moveToFirst();
+
+            while(!cursor.isAfterLast()){
+                contactName.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+            cursor.close();
+        }
+        catch (Exception e){
+            contactName = new ArrayList<>();
+        }
+
+        return contactName;
     }
 
 }
