@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton; // Import ImageButton
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 import android.widget.EditText;
 import android.widget.Button;
@@ -33,11 +34,18 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         initSettingsButton(); // Added initialization for settings button
         initToggleButton(); // Added initialization for toggle button
         initChangeDateButton(); //Added initialization for the change
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            initContact(extras.getInt("contactId"));
+        }else{
+            currentContact = new Contact();
+        }
         setForEditing(false);
-        currentContact = new Contact();
         initTextChangedEvents();
         initSaveButton();
     }
+
+
 
     private void initListButton() {
         ImageButton ibList = findViewById(R.id.imageButtonList);
@@ -334,5 +342,37 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         imm.hideSoftInputFromWindow(editAddress.getWindowToken(), 0);
     }
 
+    private void initContact(int id) {
 
+        ContactDataSource ds = new ContactDataSource(MainActivity.this);
+        try {
+            ds.open();
+            currentContact = ds.getSpecificContact(id);
+            ds.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(this, "Load Contact Failed", Toast.LENGTH_LONG).show();
+        }
+
+        EditText editName = findViewById(R.id.editName);
+        EditText editAddress = findViewById(R.id.editAddress);
+        EditText editCity = findViewById(R.id.editCity);
+        EditText editState = findViewById(R.id.editState);
+        EditText editZipCode = findViewById(R.id.editZipcode);
+        EditText editPhone = findViewById(R.id.editHome);
+        EditText editCell = findViewById(R.id.editCell);
+        EditText editEmail = findViewById(R.id.editEMail);
+        TextView birthDay = findViewById(R.id.textBirthday);
+
+        editName.setText(currentContact.getContactName());
+        editAddress.setText(currentContact.getStreetAddress());
+        editCity.setText(currentContact.getCity());
+        editState.setText(currentContact.getState());
+        editZipCode.setText(currentContact.getZipcode());
+        editPhone.setText(currentContact.getPhoneNumber());
+        editCell.setText(currentContact.getCellNumber());
+        editEmail.setText(currentContact.getEMail());
+        birthDay.setText(DateFormat.format("MM/dd/yyyy",
+                currentContact.getBirthday().getTimeInMillis()).toString());
+    }
 }
