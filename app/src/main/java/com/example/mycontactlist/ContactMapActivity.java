@@ -44,7 +44,7 @@ public class ContactMapActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_contact_map);
+        setContentView(R.layout.activity_contact_map);
 
 //        Bundle extras = getIntent().getExtras();
 //        try {
@@ -63,9 +63,9 @@ public class ContactMapActivity extends AppCompatActivity{
 //
 //        }
 //
-//        initListButton();
-//        initMapButton();
-//        initSettingsButton();
+        initListButton();
+        initMapButton();
+        initSettingsButton();
 //        initMapTypeButtons();
 //
 //        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
